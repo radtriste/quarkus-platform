@@ -82,6 +82,7 @@
 
         <kogito-quarkus.version>1.40.0.Final</kogito-quarkus.version>
         <drools-quarkus.version>8.40.0.Final</drools-quarkus.version>
+        <drools-mvel.version>2.4.15.Final</drools-mvel.version> <!-- To stay compatible with Camel -->
         <optaplanner-quarkus.version>8.40.0.Final</optaplanner-quarkus.version>
 
         <quarkus-google-cloud-services.version>1.4.0</quarkus-google-cloud-services.version>
@@ -231,6 +232,10 @@
                                 <member>
                                     <name>Drools</name>
                                     <bom>org.kie:drools-build-parent:${drools-quarkus.version}</bom>
+                                    <dependencyManagement>
+                                        <!-- Override mvel2 to stay compatible with camel -->
+                                        <dependency>org.mvel:mvel2:${drools-mvel.version}</dependency>
+                                    </dependencyManagement>
                                     <release>
                                         <lastDetectedBomUpdate>io.quarkus.platform:quarkus-drools-bom:2.16.7.Final</lastDetectedBomUpdate>
                                         <next>${platform.groupId}:quarkus-drools-bom:${platform.version}</next>
